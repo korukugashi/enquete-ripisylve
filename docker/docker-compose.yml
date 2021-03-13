@@ -1,0 +1,32 @@
+version: '3.2'
+services:
+  ripisylve-php:
+    container_name: ripisylve-php
+    build:
+      context: './php/'
+    expose:
+      - 9000
+    volumes:
+      - ../public:/var/www/html
+    networks:
+      - ripisylve
+    restart: unless-stopped
+  ripisylve-apache:
+    container_name: ripisylve-apache
+    build:
+      context: './apache/'
+    ports:
+      - 80:80
+    volumes:
+      - ../public:/var/www/html
+    depends_on:
+      - ripisylve-php
+    networks:
+      - ripisylve
+      - nginx-proxy
+    restart: unless-stopped
+networks:
+  ripisylve:
+    driver: bridge
+  nginx-proxy:
+    external: true

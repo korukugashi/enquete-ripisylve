@@ -1,0 +1,6 @@
+AuthName "Veuillez vous identifier"
+AuthType Basic
+AuthUserFile "/home/fnedoubsla/ripisylve/upload/.htpasswd"
+Require valid-user
+
+# ripisylve2590 / ripisylve2590.resultats
